@@ -1,0 +1,141 @@
+CREATE VIEW V_PELKOL AS
+SELECT PP_AREAKOL.*,
+          TGL_NOTDINKEVENDOR,
+          NAMA_VENDORPELAK,
+          NO_SPK,
+          TGL_OPERASI,
+          KON_A3CS,
+          PIN_ISOLATOR,
+          HANG_ISOLATOR,
+          KON_LA,
+          KON_CUBICLE,
+          KON_TRAFO,
+          KON_LVPANEL,
+          KON_BUNDLED,
+          TGL_NYALA,
+          TGL_PDL,
+          HPL,
+          KETERANGAN,
+          A3CS_150,
+          A3CS240,
+          MVTIC240,
+          SKTM240,
+          CUBICLE,
+          TRAFO50,
+          TRAFO100,
+          TRAFO160,
+          TRAFO200,
+          TRAFO250,
+          LVPANEL,
+          NA2XSEYB,
+          NYFGBY,
+          BUNDLED,
+          TGL_NODINPPDARIREN,
+          STATUS_KELAYAKAN,
+          TGL_NODINKEKON,
+          TGL_NODINKEPENG,
+          JANGKABAYAR_NODIN,
+          KET_ANGKA,
+          KET_URAIAN,
+          NO_NOTADINAS, 
+          NO_WO_TIANG,
+          NAMA_PABRIKAN_WO_TIANG,
+          TGL_WO_TIANG,
+          NAMA_RYN
+     FROM PP_AREAKOL
+          INNER JOIN LAINKOL ON (PP_AREAKOL.NO = LAINKOL.NO)
+          INNER JOIN PERENCANAANKOL ON (PP_AREAKOL.NO = PERENCANAANKOL.NO)
+          INNER JOIN KONSTRUKSIKOL ON (PP_AREAKOL.NO = KONSTRUKSIKOL.NO)
+          INNER JOIN RAYON ON (RAYON.ID_RYN = PP_AREAKOL.ID_RYN)
+
+
+
+          // VIEW PELTMDUA
+
+CREATE VIEW V_PELTM AS
+          SELECT PP_AREATM.*,
+          TGL_NYALA,
+          TGL_PDL,
+          HPL,
+          KETERANGAN,
+          TGL_NODINKEVENDOR,
+          NAMA_VENDORPELAK,
+          NO_SPK,
+          TGL_OPERASI,
+          KON_A3CS,
+          PIN_ISOLATOR,
+          KON_CUBICLE,
+          HANG_ISOLATOR,
+          KON_TRAFO,
+          KON_LVPANEL,
+          KON_SKTM,
+          BUNDLED,
+          TGL_NODINPPDARIREN,
+          STATUS_KELAYAKAN,
+          TGL_NODINKEKON,
+          JANGKA_BAYAR,
+          KET_ANGKA,
+          KET_URAIAN,
+          NO_NOTADINAS,
+          NO_WO_TIANG,
+          NAMA_PABRIKAN_WO_TIANG,
+          TGL_WO_TIANG,
+          NAMA_RYN
+     FROM PP_AREATM
+          INNER JOIN KONSTRUKSITM ON (PP_AREATM.NO = KONSTRUKSITM.NO)
+          INNER JOIN LAINTM ON (PP_AREATM.NO = LAINTM.NO)
+          INNER JOIN PERENCANAANTM ON (PP_AREATM.NO = PERENCANAANTM.NO)
+          INNER JOIN RAYON ON (RAYON.ID_RYN = PP_AREATM.ID_RYN)
+
+
+
+          // V_PELTRDUA
+
+CREATE VIEW V_PELTR
+          SELECT PP_AREATR.*,
+          TGL_NOTDINKEVENDOR,
+          NAMA_VENDORPELAK,
+          NO_SPK,
+          TGL_OPERASI,
+          PROGRESS,
+          KON_A3CS,
+          PIN_ISOLATOR,
+          HANG_ISOLATOR,
+          KON_LA,
+          KON_CUBICLE,
+          KON_TRAFO,
+          KON_LVPANEL,
+          KON_BUNDLED,
+          TGL_NYALA,
+          TGL_PDL,
+          HPL,
+          KETERANGAN,
+          A3CS,
+          MVTIC,
+          PIN_ISO,
+          HANG_ISO,
+          CUBICLE,
+          TRAVO_50,
+          TRAFO_100,
+          TRAFO_160,
+          TRAFO_200,
+          TRAFO_250,
+          LV_PANEL,
+          NA2XSEYB,
+          NYFGBY,
+          BUNDLED,
+          TGL_NODINKEKON,
+          TGL_NODINKEPENG,
+          JANGKABAYAR_NODINKEKON,
+          KET_ANGKA,
+          KET_URAIAN,
+          NO_NOTADINAS,
+          NO_WO_TIANG,
+          NAMA_PABRIKAN_WO_TIANG,
+          TGL_WO_TIANG,
+          NAMA_RYN
+     FROM PP_AREATR
+          INNER JOIN KONSTRUKSITR ON (PP_AREATR.NO = KONSTRUKSITR.NO)
+          INNER JOIN PERENCANAANTR ON (PP_AREATR.NO = PERENCANAANTR.NO)
+          INNER JOIN LAINTR ON (PP_AREATR.NO = LAINTR.NO)
+          INNER JOIN RAYON ON (RAYON.ID_RYN = PP_AREATR.ID_RYN)
