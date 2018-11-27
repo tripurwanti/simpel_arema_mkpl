@@ -266,7 +266,7 @@
 			<div class="portlet box blue">
 				<div class="portlet-title">
 					<div class="caption">
-						<i class="fa fa-pencil-square"></i> Bagian Rayon
+						<i class="fa fa-pencil-square"></i>Edit Data Pelanggan
 					</div>
 					<div class="tools">
 						<a href="javascript:;" class="expand">
@@ -403,25 +403,8 @@
 											<span class="input-group-btn">
 												<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
 											</span>
-											<input name="k" class="form-control" type="text" value="<?php echo $listhasil->TGL_BAYAR?>" <?php echo $array_status[9];
-											if ($array_status[9] == "") {
-												if ($listhasil->GMBR != "") {
-													if ($listhasil->BB == "") {
-														echo "disabled ";
-														echo "placeholder = 'Belum Upload Bukti Bayar'";
-													}
-												}else{
-													echo "disabled ";
-													echo "placeholder = 'Belum Survey'";
-												}
-											}
-											?>>
+											<input name="k" class="form-control" type="text" value="<?php echo $listhasil->TGL_BAYAR?>" <?php echo $array_status[9];?>>
 										</div>
-										<?php if ($listhasil->GMBR == "") {
-											echo '<i><small style="margin-left: 50px;" class="font-red">*Mohon upload gambar survey dan bukti bayar</small></i>';
-										}elseif($listhasil->BB == ""){
-											echo '<i><small style="margin-left: 50px;" class="font-green">*Mohon upload bukti bayar</small></i>';
-										} ?>
 									</td>
 								</td>
 							</tr>
@@ -539,20 +522,8 @@
 											<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
 										</span>
 										<input name="m" class="form-control" type="text" value="<?php echo $listhasil->TGL_NYALA?>" 
-										<?php echo $array_status[38];
-										if ($array_status[38] == "") {
-											if ($listhasil->NO_SPK == "") {
-												echo "disabled ";
-												echo "placeholder = 'Belum Pelaksanaan'";
-											}
-										}
-										?>>
+										<?php echo $array_status[38];?>>
 									</div>
-									<?php if ($listhasil->NO_SPK == "") {
-										echo '<i><small style="margin-left: 50px;" class="font-red">*Mohon isikan data pelaksanaan</small></i>';
-									}else{
-										echo '<i><small style="margin-left: 50px;" class="font-green">*Mohon isikan tgl PDL dan NYALA bersamaan</small></i>';
-									} ?>
 								</td>
 							</tr>
 							<tr>
@@ -563,20 +534,8 @@
 											<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
 										</span>
 										<input name="n" class="form-control" type="text" value="<?php echo $listhasil->TGL_PDL?>" 
-										<?php echo $array_status[39];
-										if ($array_status[39] == "") {
-											if ($listhasil->NO_SPK == "") {
-												echo "disabled ";
-												echo "placeholder = 'Belum Pelaksanaan'";
-											}
-										}
-										?>>
+										<?php echo $array_status[39];?>>
 									</div>
-									<?php if ($listhasil->NO_SPK == "") {
-										echo '<i><small style="margin-left: 50px;" class="font-red">*Mohon isikan data pelaksanaan</small></i>';
-									}else{
-										echo '<i><small style="margin-left: 50px;" class="font-green">*Mohon isikan tgl PDL dan NYALA bersamaan</small></i>';
-									} ?>
 								</td>
 							</tr>
 							<tr>
@@ -591,57 +550,12 @@
 										$tgl5 = $listhasil->TGL_BAYAR;
 										$tgl6 = $listhasil->TGL_PDL;
 										$selisih3 = strtotime($tgl6) -  strtotime($tgl5);
-										if($tgl5=="")
-										{
-											$hari2="TANGGAL BAYAR BELUM ADA";
-										}
-										elseif($tgl6=="")
-										{
-											$hari2="TANGGAL PDL BELUM ADA";
-										}
-										else
-										{
-											$hari2 = floor(abs($selisih3/(60*60*24)))." hari";
-										}
+										$hari2 = floor(abs($selisih3/(60*60*24)))." hari";
 										echo '<input name="o" class="form-control" type="text" value="'.$hari2.'" readonly="yes">';
 										?>
 									</div>
 								</td>
-							</tr>				
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<!-- END EXAMPLE TABLE PORTLET-->
-		<div class="portlet box blue">
-			<div class="portlet-title">
-				<div class="caption">
-					<i class="fa fa-pencil-square"></i> Bagian Perencanaan
-				</div>
-				<div class="tools">
-					<a href="javascript:;" class="expand">
-					</a>
-					<a href="javascript:;" class="reload">
-					</a>
-					<a href="javascript:;" class="fullscreen">
-					</a>
-				</div>
-			</div>
-			<div class="portlet-body form" style="display: none;">
-				<div class="form-body">
-					<table class="table table-striped table-hover table-bordered display" cellspacing="0" width="100%">
-						<thead>
-							<tr>
-								<th width="90%" class="text-center">
-									Uraian Kolom
-								</th>
-								<th width="10%" class="text-center">
-									Input
-								</th>
-							</tr>	
-						</thead>
-						<tbody>
+							</tr>
 							<tr>
 								<td>Jangka Waktu Permohonan s/d Kirim Hasil Survey ke PP</td>
 								<td>
@@ -654,22 +568,7 @@
 										$tgl1 = $listhasil->TGL_BAYAR;
 										$tgl2 = $listhasil->TGL_RYNKIRIM;
 										$selisih = strtotime($tgl2) -  strtotime($tgl1);
-										if($tgl1=="" AND $tgl2=="")
-										{
-											$hari="";	
-										}
-										elseif($tgl1=="")
-										{
-											$hari="TANGGAL BAYAR BELUM ADA";
-										}
-										elseif($tgl2=="")
-										{
-											$hari="TANGGAL RAYON KIRIM BELUM ADA";
-										}
-										else
-										{
-											$hari = abs($selisih/(60*60*24))." hari";
-										}
+										$hari = abs($selisih/(60*60*24))." hari";
 										echo '<input name="a2" class="form-control" type="text" value="'.$hari.'" readonly="yes">';
 										?>
 									</div>
@@ -682,20 +581,8 @@
 										<span class="input-group-btn">
 											<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
 										</span>
-										<input name="b2" class="form-control" type="text" value="<?php echo $listhasil->TGL_NODINPPDARIREN?>" <?php echo $array_status[16];
-										if ($array_status[16] == "") {
-											if ($listhasil->TGL_BAYAR == "") {
-												echo "disabled ";
-												echo "placeholder = 'Belum Bayar'";
-											}
-										}
-										?>>
+										<input name="b2" class="form-control" type="text" value="<?php echo $listhasil->TGL_NODINPPDARIREN?>" <?php echo $array_status[16];?>>
 									</div>
-									<?php if ($listhasil->TGL_BAYAR == "") {
-										echo '<i><small style="margin-left: 50px;" class="font-red">*Mohon upload gambar bukti bayar</small></i>';
-									}else{
-										echo '<i><small style="margin-left: 50px;" class="font-green">*Mohon isikan data RAB bersamaan</small></i>';
-									} ?>
 								</td>
 							</tr>
 							<tr>
@@ -720,20 +607,8 @@
 										<span class="input-group-btn">
 											<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
 										</span>
-										<input name="d2" class="form-control" type="text" value="<?php echo $listhasil->TGL_NODINKEKON?>" <?php echo $array_status[18];
-										if ($array_status[18] == "") {
-											if ($listhasil->TGL_BAYAR == "") {
-												echo "disabled ";
-												echo "placeholder = 'Belum Bayar'";
-											}
-										}
-										?>>
+										<input name="d2" class="form-control" type="text" value="<?php echo $listhasil->TGL_NODINKEKON?>" <?php echo $array_status[18];?>>
 									</div>
-									<?php if ($listhasil->TGL_BAYAR == "") {
-										echo '<i><small style="margin-left: 50px;" class="font-red">*Mohon upload gambar bukti bayar</small></i>';
-									}else{
-										echo '<i><small style="margin-left: 50px;" class="font-green">*Mohon isikan data RAB bersamaan</small></i>';
-									} ?>
 								</td>
 							</tr>
 							<tr>
@@ -748,22 +623,7 @@
 										$tgl3 = $listhasil->TGL_BAYAR;
 										$tgl4 = $listhasil->TGL_RYNKIRIM;
 										$selisih2 = strtotime($tgl4) -  strtotime($tgl3);
-										if($tgl3=="" AND $tgl4=="")
-										{
-											$hari1="";	
-										}
-										elseif($tgl3=="")
-										{
-											$hari1="TANGGAL BAYAR BELUM ADA";
-										}
-										elseif($tgl4=="")
-										{
-											$hari1="TANGGAL RAYON KIRIM BELUM ADA";
-										}
-										else
-										{
-											$hari1 = abs($selisih2/(60*60*24))." hari";
-										}
+										$hari1 = abs($selisih2/(60*60*24))." hari";
 										echo '<input name="e2" class="form-control" type="text" value="'.$hari1.'" readonly="yes">';
 										?>
 
@@ -799,20 +659,8 @@
 										<span class="input-group-addon">
 											<i class="fa fa-pencil-square"></i>
 										</span>
-										<input name="h2" class="form-control" type="text" value="<?php echo $listhasil->NO_NOTADINAS?>" <?php echo $array_status[22];
-										if ($array_status[22] == "") {
-											if ($listhasil->TGL_BAYAR == "") {
-												echo "disabled ";
-												echo "placeholder = 'Belum Bayar'";
-											}
-										}
-										?>>
+										<input name="h2" class="form-control" type="text" value="<?php echo $listhasil->NO_NOTADINAS?>" <?php echo $array_status[22];?>>
 									</div>
-									<?php if ($listhasil->TGL_BAYAR == "") {
-										echo '<i><small style="margin-left: 50px;" class="font-red">*Mohon upload gambar bukti bayar</small></i>';
-									}else{
-										echo '<i><small style="margin-left: 50px;" class="font-green">*Mohon isikan data RAB bersamaan</small></i>';
-									} ?>
 								</td>
 							</tr>
 							<tr>
@@ -848,40 +696,6 @@
 									</div>
 								</td>
 							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<!-- END EXAMPLE TABLE PORTLET-->
-		<div class="portlet box blue">
-			<div class="portlet-title">
-				<div class="caption">
-					<i class="fa fa-pencil-square"></i> Bagian Konstruksi
-				</div>
-				<div class="tools">
-					<a href="javascript:;" class="expand">
-					</a>
-					<a href="javascript:;" class="reload">
-					</a>
-					<a href="javascript:;" class="fullscreen">
-					</a>
-				</div>
-			</div>
-			<div class="portlet-body form" style="display: none;">
-				<div class="form-body">
-					<table class="table table-striped table-hover table-bordered display" cellspacing="0" width="100%">
-						<thead>
-							<tr>
-								<th width="90%" class="text-center">
-									Uraian Kolom
-								</th>
-								<th width="10%" class="text-center">
-									Input
-								</th>
-							</tr>	
-						</thead>
-						<tbody>
 							<tr>
 								<td>Tgl Kirim Nota Dinas(PK) ke Vendor</td>
 								<td>
@@ -889,20 +703,8 @@
 										<span class="input-group-btn">
 											<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
 										</span>
-										<input name="a3" class="form-control" type="text" value="<?php echo $listhasil->TGL_NODINKEVENDOR?>" <?php echo $array_status[26];
-										if ($array_status[26] == "") {
-											if ($listhasil->NO_NOTADINAS == "") {
-												echo "disabled ";
-												echo "placeholder = 'Belum RAB'";
-											}
-										}
-										?>>
+										<input name="a3" class="form-control" type="text" value="<?php echo $listhasil->TGL_NODINKEVENDOR?>" <?php echo $array_status[26];?>>
 									</div>
-									<?php if ($listhasil->NO_NOTADINAS == "") {
-										echo '<i><small style="margin-left: 50px;" class="font-red">*Mohon isikan data RAB</small></i>';
-									}else{
-										echo '<i><small style="margin-left: 50px;" class="font-green">*Mohon isikan data pelaksanaan bersamaan</small></i>';
-									} ?>
 								</td>
 							</tr>
 							<tr>
@@ -912,20 +714,8 @@
 										<span class="input-group-addon">
 											<i class="fa fa-pencil-square"></i>
 										</span>
-										<input name="b3" class="form-control" type="text" value="<?php echo $listhasil->NAMA_VENDORPELAK?>" <?php echo $array_status[27];
-										if ($array_status[27] == "") {
-											if ($listhasil->NO_NOTADINAS == "") {
-												echo "disabled ";
-												echo "placeholder = 'Belum RAB'";
-											}
-										}
-										?>>
+										<input name="b3" class="form-control" type="text" value="<?php echo $listhasil->NAMA_VENDORPELAK?>" <?php echo $array_status[27];?>>
 									</div>
-									<?php if ($listhasil->NO_NOTADINAS == "") {
-										echo '<i><small style="margin-left: 50px;" class="font-red">*Mohon isikan data RAB</small></i>';
-									}else{
-										echo '<i><small style="margin-left: 50px;" class="font-green">*Mohon isikan data pelaksanaan bersamaan</small></i>';
-									} ?>
 								</td>
 							</tr>
 							<tr>
@@ -935,20 +725,8 @@
 										<span class="input-group-addon">
 											<i class="fa fa-pencil-square"></i>
 										</span>
-										<input name="c3" class="form-control" type="text" value="<?php echo $listhasil->NO_SPK?>" <?php echo $array_status[28];
-										if ($array_status[28] == "") {
-											if ($listhasil->NO_NOTADINAS == "") {
-												echo "disabled ";
-												echo "placeholder = 'Belum RAB'";
-											}
-										}
-										?>>
+										<input name="c3" class="form-control" type="text" value="<?php echo $listhasil->NO_SPK?>" <?php echo $array_status[28];?>>
 									</div>
-									<?php if ($listhasil->NO_NOTADINAS == "") {
-										echo '<i><small style="margin-left: 50px;" class="font-red">*Mohon isikan data RAB</small></i>';
-									}else{
-										echo '<i><small style="margin-left: 50px;" class="font-green">*Mohon isikan data pelaksanaan bersamaan</small></i>';
-									} ?>
 								</td>
 							</tr>
 							<tr>
@@ -1048,27 +826,8 @@
 									<input name="l3" class="form-control" type="text" value="<?php echo $listhasil->BUNDLED?>" <?php echo $array_status[37];?>>
 								</div>
 							</td>
-						</tr>						
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div>
-		<div class="form-body">
-			<table class="table table-striped table-hover table-bordered display" cellspacing="0" width="100%">
-				<thead>
-					<tr>
-						<th width="90%" class="text-center">
-							Uraian Kolom
-						</th>
-						<th width="10%" class="text-center">
-							Input
-						</th>
-					</tr>	
-				</thead>
-				<tbody>
-					<tr>
+						</tr>
+						<tr>
 						<td>Keterangan</td>
 						<td>
 							<div class="input-group input-large">
@@ -1078,12 +837,12 @@
 								<input name="p" class="form-control" type="text" value="<?php echo $listhasil->KETERANGAN?>" <?php echo $array_status[41];?>>
 							</div>
 						</td>
-					</tr>						
-				</tbody>
-			</table>
+					</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
-	</div>
-	<!-- END EXAMPLE TABLE PORTLET-->
 	<?php
 endforeach;
 ?>

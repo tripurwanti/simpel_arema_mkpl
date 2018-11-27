@@ -25,6 +25,12 @@ header("Content-Transfer-Encoding: binary ");
 		<td><font color='red' size="4"><b>MONITORING PELANGGAN TM</b></font></td>
 	</tr>
 	<tr>
+		<td align="center"></td>
+	</tr>
+	<tr>
+		<td align="center"></td>
+	</tr>
+	<tr>
 		<td>
 			<table cellpadding="8" style="border-collapse:collapse;" border="1">
 				<thead>
@@ -84,6 +90,7 @@ header("Content-Transfer-Encoding: binary ");
 			<tbody>
 				<?php
 				$i=1;
+				$c=10;
 				foreach($hasil as $listhasil):
 					echo "<tr>";
 					echo "<td class='text-center'>".$i."</td>";
@@ -123,12 +130,21 @@ header("Content-Transfer-Encoding: binary ");
 					echo "<td>".$listhasil->ID_RYN."</td>";
 					echo "<td>".$listhasil->KET_PERLUASAN."</td>";
 					echo "<td>".$listhasil->TGL_RYNKIRIM."</td>";
-					echo "<td>".$listhasil->JANGKA_SURVEYPP."</td>";
+					
+					echo '<td>=	IF(AND(S'.$c.'<>"";Q'.$c.'<>"");""&ABS(DAYS360(S'.$c.';Q'.$c.'))&" hari";
+								IF(AND(S'.$c.'<>" ";Q'.$c.'<>"");"BELUM ADA TGL NODIN (KE PP DARI REN)";
+								IF(AND(S'.$c.'<>"";Q'.$c.'<>" ");"BELUM ADA TGL RAYON KIRIM PERMOHONAN PLG KE PP/AREA";"BELUM ADA TGL NODIN (KE PP DARI REN) DAN TGL RAYON KIRIM PERMOHONAN PLG KE PP/AREA ")))</td>';
+					
+					// echo "<td>".$listhasil->JANGKA_SURVEYPP."</td>";
 					
 					echo "<td>".$listhasil->TGL_NODINPPDARIREN."</td>";
 					echo "<td>".$listhasil->STATUS_KELAYAKAN."</td>";
 					echo "<td>".$listhasil->TGL_NODINKEKON."</td>";
-					echo "<td>".$listhasil->JANGKA_BAYAR."</td>";
+
+					echo '<td>=	IF(AND(U'.$c.'<>"";K'.$c.'<>"");""&ABS(DAYS360(U'.$c.';K'.$c.'))&" hari";
+						   		IF(AND(U'.$c.'<>" ";K'.$c.'<>"");"KIRIM NODIN (PK) KE KON DARI REN";
+						   		IF(AND(U'.$c.'<>"";K'.$c.'<>" ");"BELUM ADA TGL BAYAR";"BELUM ADA TGL KIRIM NODIN (PK) KE KON DARI REN DAN TGL BAYAR")))</td>';
+					
 					echo "<td>".$listhasil->KET_ANGKA."</td>";
 					echo "<td>".$listhasil->KET_URAIAN."</td>";
 					echo "<td>".$listhasil->NO_NOTADINAS."</td>";
@@ -151,11 +167,16 @@ header("Content-Transfer-Encoding: binary ");
 					
 					echo "<td>".$listhasil->TGL_NYALA."</td>";
 					echo "<td>".$listhasil->TGL_PDL."</td>";
-					echo "<td>".$listhasil->HPL."</td>";
+
+					echo '<td>= IF(AND(K'.$c.'<>"";AP'.$c.'<>"");""&DAYS360(K'.$c.';AP'.$c.')&" hari";
+						    	IF(AND(K'.$c.'="";AP'.$c.'<>"");"BELUM ADA TGL BAYAR";
+						    	IF(AND(K'.$c.'<>"";AP'.$c.'="");"BELUM ADA TGL PDL";"BELUM ADA TANGGAL BAYAR DAN TGL PDL")))</td>';
+					
 					echo "<td>".$listhasil->KETERANGAN."</td>";
 					
 					echo "</tr>";
 					$i++;
+					$c++;
 				endforeach;
 				?>
 			</tbody>

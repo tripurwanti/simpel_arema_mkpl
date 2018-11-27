@@ -84,68 +84,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		vertical-align: middle;
 	}
 </style>
-<style>
-#scrolchat {
-	max-height:400px;
-	overflow-y:auto;
-}
-
-#scrolchat > ul > li {
-	padding:3px;
-	clear:both;
-	padding:4px;
-	margin:10px 0px 5px 0px;
-	overflow:auto;
-}
-
-.scrollnotif {
-	max-height:400px;
-	overflow-y:auto;
-}
-
-.scrolnotif > ul > li {
-	padding:3px;
-	clear:both;
-	padding:4px;
-	margin:10px 0px 5px 0px;
-	overflow:auto;
-}
-
-#chat-box {
-	position: fixed;
-	bottom : 0;
-	margin-left: 10px; 
-}
-.collapsed {
-	display: none; /* hide it for small displays */
-}
-
-/*** css notification ***/
-.line-header{
-	display:inline-block;
-}
-.lg-item{
-	color:#FAFAFA;
-	border:none;
-	margin:3px;
-}
-.line-ket{
-	display:inline-block;
-	font-size:10px;
-	font-weight: bold
-}
-.line-hr{
-	margin:3px 0 3px 0; 
-	color:solid white;
-}
-.line-text{
-	display:block;
-	font-size:10px;
-}
-/*** end of css notification ***/
-</style>
 <link rel="shortcut icon" href="<?php echo base_url()?>assets/img/favicon.ico"/>
-
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -226,133 +165,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="<?php echo base_url()?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>assets/admin/pages/scripts/form-editable.js"></script>
 <script src="<?php echo base_url()?>assets/admin/pages/scripts/components-pickers.js"></script>
-<!--sidebar dasbord 5 menu-->
-<script type="text/javascript">
-	function openBelumSurvey() {
-		$('.dasbord-collapse.collapse.in').collapse('hide');
-		$('#collapseExample1').collapse('show');
-	}
-
-	function openBelumBayar() {
-		$('.dasbord-collapse.collapse.in').collapse('hide');
-		$('#collapseExample2').collapse('show');
-	}
-
-	function openBelumRAB() {
-		$('.dasbord-collapse.collapse.in').collapse('hide');
-		$('#collapseExample3').collapse('show');
-	}
-
-	function openBelumPelaksanaan() {
-		$('.dasbord-collapse.collapse.in').collapse('hide');
-		$('#collapseExample4').collapse('show');
-	}
-	function openBelumNyala() {
-		$('.dasbord-collapse.collapse.in').collapse('hide');
-		$('#collapseExample5').collapse('show');
-	}
-</script>
-<!--end of sidebar dasbord 5 menu-->
-<!--sidebar js-->
-<script type="text/javascript">
-	$('.sidebar-toggler').on( 'click', function () {
-		$('#chats').removeClass('in');
-		$('#notif').removeClass('in');
-	});
-	$('#chat-toggler').on('click',function () {
-		if ($("#sidebar-menu").hasClass("page-sidebar-menu-closed")) {
-			$("#sidebar-toggler").click();
-		}
-		if ($("#messagebar").hasClass("active")) {
-			$("#messagebar").removeClass("active");
-		}else{
-			$("#messagebar").addClass("active");
-		}
-		$('#chats').collapse('toggle');
-		var objDiv = document.getElementById("scrolchat");
-		objDiv.scrollTop = objDiv.scrollHeight;
-	});
-	$('#notification-toggler').on('click',function () {
-		if ($("#sidebar-menu").hasClass("page-sidebar-menu-closed")) {
-			$("#sidebar-toggler").click();
-		}
-		if ($("#notifbar").hasClass("active")) {
-			$("#notifbar").removeClass("active");
-		}else{
-			$("#notifbar").addClass("active");
-		}
-		$('#notif').collapse('toggle');
-	});
-	function insertData(){
-		if ($("#pesan").val()!=''){
-			var datainput = {'pesan':$("#pesan").val()};
-			$.ajax({
-				type:'POST',
-				data:datainput,
-				url:'<?php echo base_url();?>chat/insert_pesan',
-				beforeSend:function(){
-					$("#loader").show();
-					$("#btn").addClass("disabled");
-				},
-				success:function(html){
-					$("#loader").hide();
-					$("#btn").removeClass("disabled");
-				},
-				error:function(){
-					$("#loader").hide();
-					$("#btn").removeClass("disabled");
-				}
-			});
-		}
-		document.getElementById("pesan").value="";
-		var objDiv = document.getElementById("scrolchat").delay(300);
-		objDiv.scrollTop = objDiv.scrollHeight;
-	}
-	function tampilPesan(){
-		$.ajax({
-			type:'POST',
-			url:'<?php echo base_url();?>chat/tampil_pesan',
-			cache: false,
-			success:function(html){
-				$("#isi").html(html);
-			},
-		});
-	}
-	function showNotif(){
-		$.ajax({
-			type:'POST',
-			url:'<?php echo base_url();?>c_notifikasi/show_notif',
-			cache: false,
-			success:function(html){
-				$("#notif_isi").html(html);
-			},
-		});
-	}
-	$(document).ready(function(){
-		$("#loader").hide();	
-		setInterval(function(){
-			showNotif();
-			tampilPesan();
-		},250);
-	});
-</script>
 <!--end of sidebar js-->
-<script type="text/javascript">
-	$(document).ready(function(){
-		function notif(){
-			$.ajax({
-				type:'POST',
-				url:'<?php echo base_url();?>user/notif',
-				success:function(html){
-					$("#jmlpesan").html(html);
-				}
-			});
-		}
-		setInterval(function(){
-			notif();
-		},1000);
-	});
-</script>
 <script>
 	jQuery(document).ready(function() {       
    	Metronic.init(); // init metronic core components
@@ -373,8 +186,160 @@ License: You must have a valid license purchased only from themeforest(the above
 </script>
 
 <script>
-	$(document).ready(function(){
+	function cek_datatables(jenis_data, data){
+		if (jenis_data === "TR") {
+			var NAMA_RYN = data[13];
+			var STATUS_PERMOHONAN = data[11];
+			var TGL_NYALA = data[53];
+			var TGL_NODINKEKON = data[31];
+		}else if (jenis_data === "TM") {
+			var NAMA_RYN = data[13];
+			var STATUS_PERMOHONAN = data[11];
+			var TGL_NYALA = data[39];
+			var TGL_NODINKEKON = data[19];
+		}else if (jenis_data === "KOLEKTIF"){
+			var NAMA_RYN = data[10];
+			var STATUS_PERMOHONAN = data[8];
+			var TGL_NYALA = data[51];
+			var TGL_NODINKEKON = data[30];
+		}
+		if (($('#select_rayon').val() !== "") && ($('#select_status').val() !== "") && ($('#select_keterangan').val() !== "")) {
+			if ($('#select_keterangan').val() === "NYALA") {
+				if (($('#select_rayon').val() === NAMA_RYN) && ($('#select_status').val() === STATUS_PERMOHONAN) && (TGL_NYALA !== "")) {
+					return true;
+				}else{
+					return false;
+				}
+			}else if ($('#select_keterangan').val() === "BELUM NYALA") {
+				if (($('#select_rayon').val() === NAMA_RYN) && ($('#select_status').val() === STATUS_PERMOHONAN) && (TGL_NYALA === "")) {
+					return true;
+				}else{
+					return false;
+				}
+			}else if ($('#select_keterangan').val() === "USULAN") {
+				if (($('#select_rayon').val() === NAMA_RYN) && ($('#select_status').val() === STATUS_PERMOHONAN) && (TGL_NODINKEKON !== "") && (TGL_NYALA !== "")) {
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}else if (($('#select_rayon').val() !== "") && ($('#select_status').val() !== "") && !($('#select_keterangan').val() !== "")) {
+			if (($('#select_rayon').val() === NAMA_RYN) && ($('#select_status').val() === STATUS_PERMOHONAN)) {
+				return true;
+			}else{
+				return false;
+			}
+		}else if (($('#select_rayon').val() !== "") && !($('#select_status').val() !== "") && ($('#select_keterangan').val() !== "")) {
+			if ($('#select_keterangan').val() === "NYALA") {
+				if (($('#select_rayon').val() === NAMA_RYN) && (TGL_NYALA !== "")) {
+					return true;
+				}else{
+					return false;
+				}
+			}else if ($('#select_keterangan').val() === "BELUM NYALA") {
+				if (($('#select_rayon').val() === NAMA_RYN) && (TGL_NYALA === "")) {
+					return true;
+				}else{
+					return false;
+				}
+			}else if ($('#select_keterangan').val() === "USULAN") {
+				if (($('#select_rayon').val() === NAMA_RYN) && (TGL_NODINKEKON !== "") && (TGL_NYALA !== "")) {
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}else if (!($('#select_rayon').val() !== "") && ($('#select_status').val() !== "") && ($('#select_keterangan').val() !== "")) {
+			if ($('#select_keterangan').val() === "NYALA") {
+				if (($('#select_status').val() === STATUS_PERMOHONAN) && (TGL_NYALA !== "")) {
+					return true;
+				}else{
+					return false;
+				}
+			}else if ($('#select_keterangan').val() === "BELUM NYALA") {
+				if (($('#select_status').val() === STATUS_PERMOHONAN) && (TGL_NYALA === "")) {
+					return true;
+				}else{
+					return false;
+				}
+			}else if ($('#select_keterangan').val() === "USULAN") {
+				if (($('#select_status').val() === STATUS_PERMOHONAN) && (TGL_NODINKEKON !== "") && (TGL_NYALA !== "")) {
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}else if (($('#select_rayon').val() !== "") && !($('#select_status').val() !== "") && !($('#select_keterangan').val() !== "")) {
+			if (($('#select_rayon').val() === NAMA_RYN)) {
+				return true;
+			}else{
+				return false;
+			}
+		}else if (!($('#select_rayon').val() !== "") && ($('#select_status').val() !== "") && !($('#select_keterangan').val() !== "")) {
+			if (($('#select_status').val() === STATUS_PERMOHONAN)) {
+				return true;
+			}else{
+				return false;
+			}
+		}else if (!($('#select_rayon').val() !== "") && !($('#select_status').val() !== "") && ($('#select_keterangan').val() !== "")) {
+			if ($('#select_keterangan').val() === "NYALA") {
+				if ((TGL_NYALA !== "")) {
+					return true;
+				}else{
+					return false;
+				}
+			}else if ($('#select_keterangan').val() === "BELUM NYALA") {
+				if ((TGL_NYALA === "")) {
+					return true;
+				}else{
+					return false;
+				}
+			}else if ($('#select_keterangan').val() === "USULAN") {
+				if ((TGL_NODINKEKON !== "") && (TGL_NYALA !== "")) {
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}else{
+			return true;
+		}
+	}
+	$.fn.dataTable.ext.search.push(
+		function(settings, data, dataIndex) {
+			if ($('#selector').val() === "ongoing") {
+				var api = new $.fn.dataTable.Api(settings);
+				return api.row(dataIndex).nodes().to$().hasClass("ongoing");
+			}else if ($('#selector').val() === "done") {
+				var api = new $.fn.dataTable.Api(settings);
+				return api.row(dataIndex).nodes().to$().hasClass("done");
+			}else{
+				return true;
+			}
+		});
 
+	$.fn.dataTable.ext.search.push(
+		function(settings, data, dataIndex) {
+			if ($('#type_rayon').val() === "pelanggan_TR") {
+				return cek_datatables("TR", data);
+			}else if ($('#type_rayon').val() === "pelanggan_TM") {
+				return cek_datatables("TM", data);
+			}else if ($('#type_rayon').val() === "pelanggan_KOLEKTIF") {
+				return cek_datatables("KOLEKTIF", data);
+			} else {
+				return true;
+			}
+		});
+
+	$(document).ready(function(){
 		var table = $('#datatablehori').DataTable( {
 			"scrollY": "300px",
 			"scrollX": true,
@@ -396,65 +361,32 @@ License: You must have a valid license purchased only from themeforest(the above
 			"pagingType": "full_numbers"
 		});
 
-		$(function(){
-			$.fn.dataTable.ext.search.push(
-				function(settings, data, dataIndex) {
-					if ($('#selector').val() === "ongoing") {
-						var api = new $.fn.dataTable.Api(settings);
-						return api.row(dataIndex).nodes().to$().hasClass("ongoing");
-					}else if ($('#selector').val() === "done") {
-						var api = new $.fn.dataTable.Api(settings);
-						return api.row(dataIndex).nodes().to$().hasClass("done");
-					}else{
-						return true;
-					}
-				}
-				);
-			$('#selector').on('change', function(){
-				table.draw();
-			});
+		$('#selector').on('change', function(){
+			table.draw();
 		});
 
-		$(function(){
-			$.fn.dataTable.ext.search.push(
-				function(settings, data, dataIndex) {
-					var api = new $.fn.dataTable.Api(settings);
-					if ($('#select_rayon').val() === "51301") {
-						return api.row(dataIndex).nodes().to$().hasClass("51301");
-					}else if ($('#select_rayon').val() === "51302") {
-						return api.row(dataIndex).nodes().to$().hasClass("51302");
-					}else if ($('#select_rayon').val() === "51303") {
-						return api.row(dataIndex).nodes().to$().hasClass("51303");
-					}else if ($('#select_rayon').val() === "51304") {
-						return api.row(dataIndex).nodes().to$().hasClass("51304");
-					}else if ($('#select_rayon').val() === "51305") {
-						return api.row(dataIndex).nodes().to$().hasClass("51305");
-					}else if ($('#select_rayon').val() === "51306") {
-						return api.row(dataIndex).nodes().to$().hasClass("51306");
-					}else if ($('#select_rayon').val() === "51307") {
-						return api.row(dataIndex).nodes().to$().hasClass("51307");
-					}else if ($('#select_rayon').val() === "51308") {
-						return api.row(dataIndex).nodes().to$().hasClass("51308");
-					}else if ($('#select_rayon').val() === "51309") {
-						return api.row(dataIndex).nodes().to$().hasClass("51309");
-					}else if ($('#select_rayon').val() === "51310") {
-						return api.row(dataIndex).nodes().to$().hasClass("51310");
-					}else if ($('#select_rayon').val() === "51311") {
-						return api.row(dataIndex).nodes().to$().hasClass("51311");
-					}else if ($('#select_rayon').val() === "51312") {
-						return api.row(dataIndex).nodes().to$().hasClass("51312");
-					}else if ($('#select_rayon').val() === "51313") {
-						return api.row(dataIndex).nodes().to$().hasClass("51313");
-					}else if ($('#select_rayon').val() === "51314") {
-						return api.row(dataIndex).nodes().to$().hasClass("51302");
-					}else{
-						return true;
-					}
-				}
-				);
-			$('#select_rayon').on('change', function(){
+		$('#select_rayon').on('change', function(){
+			if ($('#type_rayon').val() === "pelanggan_TR") {
 				table.draw();
-			});
+			}else if ($('#type_rayon').val() === "pelanggan_TM") {
+				table.draw();
+			}else if ($('#type_rayon').val() === "pelanggan_KOLEKTIF") {
+				table.draw();
+			}
+		});
+
+		$('#select_status').on('change', function(){
+			if ($('#type_rayon').val() === "pelanggan_TR") {
+				table.draw();	
+			}else if ($('#type_rayon').val() === "pelanggan_TM") {
+				table.draw();
+			}else if ($('#type_rayon').val() === "pelanggan_KOLEKTIF") {
+				table.draw();
+			}
+		});
+
+		$('#select_keterangan').on('change', function(){
+			table.draw();
 		});
 
 	});

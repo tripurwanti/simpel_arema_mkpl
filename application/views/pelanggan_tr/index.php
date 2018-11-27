@@ -44,60 +44,21 @@ td{font-size: 11px;}
 					<div class="table-toolbar">
 						<div class="portlet-body form">
 							<div class="tabbable tabbable-custom">
-								<ul class="nav nav-pills nav-justified" style="border: 1px solid #dddd; padding: 3px;">
-									<li class="active">
-										<a href="<?php echo base_url()?>pelanggan_TR/">Pelanggan TR</a>
-									</li>
-									<li>
-										<a href="<?php echo base_url()?>kolektif/">Pelanggan KOLEKTIF</a>
-									</li>
-									<li>
-										<a href="<?php echo base_url()?>pelanggan_TM/">Pelanggan TM</a>
-									</li>
-								</ul>
+								
 								<div class="tab-content">
 									<div class="tab-pane active">
 										<div class="row w-100" style="margin-bottom: 3px">
-											<div class="col-md-3">
+											<div class="col-md-6">
 												<div class="btn-group">
 													<button data-toggle='modal' data-target='#inaddModal' class="btn green">
 														Tambah <i class="fa fa-plus"></i>
 													</button>
 												</div>
 											</div>
-											<div class="col-md-2">
-												<!-- for justifying content-->
-											</div>
-											<div class="col-md-3">
-												<select class="form-control" name="datafilter" id="select_rayon">
-													<option selected value="statecont">--Nama Rayon--</option>
-													<option value="51301">RYN LAWANG</option>
-													<option value="51302">RYN BULULAWANG</option>
-													<option value="51303">RYN BATU</option>
-													<option value="51304">RYN SINGOSARI</option>
-													<option value="51305">RYN KEPANJEN</option>
-													<option value="51306">RYN TUMPANG</option>
-													<option value="51307">RYN GONDANGLEGI</option>
-													<option value="51308">RYN DAMPIT</option>
-													<option value="51309">RYN NGANTANG</option>
-													<option value="51310">RYN SUMBER PUCUNG</option>
-													<option value="51311">RYN DINOYO</option>
-													<option value="51312">RYN BLIMBING</option>
-													<option value="51313">RYN MALANG KOTA</option>
-													<option value="51314">RYN KEBON AGUNG</option>
-												</select>
-												<span class="help-block">
-													* GUNAKAN HURUF KAPITAL
-												</span>
-												<div class="btn-group" style="margin-left: 60px;">
-													<button class="btn red" id="show_unorder">
-														Show Unordered Data
-													</button>
-												</div>
-											</div>
-											<div class="col-md-4">
+											
+											<div class="col-md-6">
 												<div class="btn-group pull-right">
-													<a class="btn blue" href="<?php echo base_url()?>kolektif/exporttoexcel">
+													<a class="btn blue" href="<?php echo base_url()?>pelanggan_TR/exporttoexcel">
 													Export to Excel </a>
 												</div>
 											</div>
@@ -198,7 +159,6 @@ td{font-size: 11px;}
 												<?php
 												$i=1;
 												foreach($hasil as $listhasil):
-													echo "<tr class=\"statecont ".$listhasil->ID_RYN."\">";
 													echo "<td class='text-center'>".$i."</td>";
 													echo "<td>".$listhasil->NAMA_PEL."</td>";
 													echo "<td>".$listhasil->IDPEL."</td>";
@@ -358,7 +318,6 @@ td{font-size: 11px;}
 																else
 																{
 																	?>
-
 																	<td>
 																		<button class="btn btn-sm blue filter-submit margin-bottom">&nbsp;&nbsp;&nbsp;<i class="fa fa-ban"></i>&nbsp;&nbsp;&nbsp;&nbsp;</button>
 																	</td>
@@ -475,20 +434,20 @@ td{font-size: 11px;}
 											<select class="form-control" name="m" id="select" required>
 												<?php if ($_SESSION['akses'] == 'rayon') {?>
 												<option selected value="">--Nama Rayon--</option>
-												<option value="51301" <?php if ($_SESSION['nama_rayon'] != "RYN LAWANG") {echo "disabled";}?>>RYN LAWANG</option>
-												<option value="51302" <?php if ($_SESSION['nama_rayon'] != "RYN BULULAWANG") {echo "disabled";}?>>RYN BULULAWANG</option>
-												<option value="51303" <?php if ($_SESSION['nama_rayon'] != "RYN BATU") {echo "disabled";}?>>RYN BATU</option>
-												<option value="51304" <?php if ($_SESSION['nama_rayon'] != "RYN SINGOSARI") {echo "disabled";}?>>RYN SINGOSARI</option>
-												<option value="51305" <?php if ($_SESSION['nama_rayon'] != "RYN KEPANJEN") {echo "disabled";}?>>RYN KEPANJEN</option>
-												<option value="51306" <?php if ($_SESSION['nama_rayon'] != "RYN TUMPANG") {echo "disabled";}?>>RYN TUMPANG</option>
-												<option value="51307" <?php if ($_SESSION['nama_rayon'] != "RYN GONDANGLEGI") {echo "disabled";}?>>RYN GONDANGLEGI</option>
-												<option value="51308" <?php if ($_SESSION['nama_rayon'] != "RYN DAMPIT") {echo "disabled";}?>>RYN DAMPIT</option>
-												<option value="51309" <?php if ($_SESSION['nama_rayon'] != "RYN NGANTANG") {echo "disabled";}?>>RYN NGANTANG</option>
-												<option value="51310" <?php if ($_SESSION['nama_rayon'] != "RYN SUMBER PUCUNG") {echo "disabled";}?>>RYN SUMBER PUCUNG</option>
-												<option value="51311" <?php if ($_SESSION['nama_rayon'] != "RYN DINOYO") {echo "disabled";}?>>RYN DINOYO</option>
-												<option value="51312" <?php if ($_SESSION['nama_rayon'] != "RYN BLIMBING") {echo "disabled";}?>>RYN BLIMBING</option>
-												<option value="51313" <?php if ($_SESSION['nama_rayon'] != "RYN MALANG KOTA") {echo "disabled";}?>>RYN MALANG KOTA</option>
-												<option value="51314" <?php if ($_SESSION['nama_rayon'] != "RYN KEBON AGUNG") {echo "disabled";}?>>RYN KEBON AGUNG</option>
+												<option value="51301" <?php if ($_SESSION['rayon'] != "RYN LAWANG") {echo "disabled";}?>>RYN LAWANG</option>
+												<option value="51302" <?php if ($_SESSION['rayon'] != "RYN BULULAWANG") {echo "disabled";}?>>RYN BULULAWANG</option>
+												<option value="51303" <?php if ($_SESSION['rayon'] != "RYN BATU") {echo "disabled";}?>>RYN BATU</option>
+												<option value="51304" <?php if ($_SESSION['rayon'] != "RYN SINGOSARI") {echo "disabled";}?>>RYN SINGOSARI</option>
+												<option value="51305" <?php if ($_SESSION['rayon'] != "RYN KEPANJEN") {echo "disabled";}?>>RYN KEPANJEN</option>
+												<option value="51306" <?php if ($_SESSION['rayon'] != "RYN TUMPANG") {echo "disabled";}?>>RYN TUMPANG</option>
+												<option value="51307" <?php if ($_SESSION['rayon'] != "RYN GONDANGLEGI") {echo "disabled";}?>>RYN GONDANGLEGI</option>
+												<option value="51308" <?php if ($_SESSION['rayon'] != "RYN DAMPIT") {echo "disabled";}?>>RYN DAMPIT</option>
+												<option value="51309" <?php if ($_SESSION['rayon'] != "RYN NGANTANG") {echo "disabled";}?>>RYN NGANTANG</option>
+												<option value="51310" <?php if ($_SESSION['rayon'] != "RYN SUMBER PUCUNG") {echo "disabled";}?>>RYN SUMBER PUCUNG</option>
+												<option value="51311" <?php if ($_SESSION['rayon'] != "RYN DINOYO") {echo "disabled";}?>>RYN DINOYO</option>
+												<option value="51312" <?php if ($_SESSION['rayon'] != "RYN BLIMBING") {echo "disabled";}?>>RYN BLIMBING</option>
+												<option value="51313" <?php if ($_SESSION['rayon'] != "RYN MALANG KOTA") {echo "disabled";}?>>RYN MALANG KOTA</option>
+												<option value="51314" <?php if ($_SESSION['rayon'] != "RYN KEBON AGUNG") {echo "disabled";}?>>RYN KEBON AGUNG</option>
 												<?php }else{ ?>
 												<option selected value="">--Nama Rayon--</option>
 												<option value="51301">RYN LAWANG</option>

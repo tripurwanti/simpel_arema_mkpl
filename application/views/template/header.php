@@ -34,11 +34,14 @@
 					  }
                     ?>
 					<span class="username username-hide-on-mobile"> <?php echo $_SESSION['nama'] ?> </span>
+					<?php if ($_SESSION['akses']=="admin") { ?>
+					<span class="username username-hide-on-mobile" id='count'></span>
+					<?php } ?>
 					<i class="fa fa-angle-down"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-default">
 						<li>
-							<a href="<?php echo base_url()?>profile">
+							<a href="<?php echo base_url()?>c_admin/show_edit_pass">
 							<i class="icon-user"></i> My Profile </a>
 						</li>
 						<?php 
@@ -46,8 +49,8 @@
 							{
 						?>
 						<li>
-							<a href="<?php echo base_url()?>user">
-							<i class="icon-users"></i> Daftar User </a>
+							<a href="<?php echo base_url()?>c_admin/show_all_admin">
+							<i class="icon-users"></i> Daftar User</a> 
 						</li>
 						<?php 
 							}
@@ -55,11 +58,11 @@
 						<li class="divider">
 						</li>
 						<li>
-							<a href="<?php echo base_url()?>lock">
+							<a href="<?php echo base_url()?>c_admin/show_lockscreen">
 							<i class="icon-lock"></i> Lock Screen </a>
 						</li>
 						<li>
-							<a href="<?php echo base_url()?>home/logout">
+							<a href="<?php echo base_url()?>c_admin/logout">
 							<i class="icon-key"></i> Log Out </a>
 						</li>
 					</ul>

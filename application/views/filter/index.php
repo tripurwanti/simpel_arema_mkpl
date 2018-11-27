@@ -8,8 +8,8 @@
 					<ul class="page-breadcrumb breadcrumb">
 						<li>
 							<i class="fa fa-filter"></i>
-							<a href="<?php base_url()?>filter">
-								Filter
+							<a href="<?php base_url()?>c_filter">
+								filter
 							</a>
 						</li>
 					</ul>
@@ -34,7 +34,7 @@
 				</div>
 				<div class="portlet-body form">
 					<!-- BEGIN FORM-->
-					<?php echo form_open_multipart('filter/datafilter','class="form-horizontal"');?>
+					<?php echo form_open_multipart('c_filter/datafilter','class="form-horizontal"');?>
 							<div class="form-body">
 							<br>
 								<div class="form-group">

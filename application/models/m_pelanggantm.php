@@ -297,15 +297,6 @@ class M_pelanggantm extends CI_Model
 			return $hasil;
 		}
 
-		function get_total_data_by_rayon_TM($nama_rayon){
-			$hasil=$this->db->query("SELECT COUNT(*) AS total FROM V_PELTM where NAMA_RYN = '" .$nama_rayon ."' AND (STATUS_PERMOHONAN <> 'RESTITUSI' OR STATUS_PERMOHONAN IS NULL) AND TGL_BAYAR IS NOT NULL");
-			return $hasil;
-		}
-
-		function get_detail_data_by_rayon_TM($nama_rayon){
-			$hasil=$this->db->query("SELECT * FROM V_PELTM where NAMA_RYN = '" .$nama_rayon ."' AND (STATUS_PERMOHONAN <> 'RESTITUSI' OR STATUS_PERMOHONAN IS NULL) AND TGL_BAYAR IS NOT NULL");
-			return $hasil;
-		}
 
 
 		function get_total_data_GMBR_TM(){
@@ -364,9 +355,6 @@ class M_pelanggantm extends CI_Model
 			return $hasil;
 		}
 
-		public function getRayon($rayon){
-			$hasil = $this->db->query("SELECT * FROM V_PELTM WHERE ID_RYN = '".$rayon."'");
-			return $hasil;
-		}
+		
 	}
 	?>

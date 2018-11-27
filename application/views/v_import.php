@@ -8,7 +8,7 @@
 					<ul class="page-breadcrumb breadcrumb">
 						<li>
 							<i class="fa fa-upload"></i>
-							<a href="<?php base_url()?>import">
+							<a href="<?php base_url()?>c_import">
 								Unggah Excel
 							</a>
 						</li>
@@ -34,7 +34,7 @@
 				</div>
 				<div class="portlet-body form">
 					<!-- BEGIN FORM-->
-					<?php echo form_open_multipart('import/do_upload','class="form-horizontal"');?>
+					<?php echo form_open_multipart('c_import/do_upload','class="form-horizontal"');?>
 							<div class="form-body">
 							<br>
 								<div class="form-group">
@@ -45,6 +45,7 @@
 											<option value="pelTR">Pelanggan TR</option>
 											<option value="kolektif">Pelanggan Kolektif</option>
 											<option value="pelTM">Pelanggan TM</option>
+											<option value="all">Semua</option>
 										</select>
 									</div>
 									<font color="#ef4423"><?php echo form_error('jenis_monitoring'); ?></font>

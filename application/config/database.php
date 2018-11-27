@@ -49,7 +49,7 @@ $active_group = 'default';
 $active_record = TRUE;
 
 //$db['default']['hostname'] = '(DESCRIPTION = (ADDRESS= (PROTOCOL = TCP)(HOST = LOCALHOST)(PORT = 1521))(CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = ORCL)))';
-$db['default']['hostname'] = '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1522))(CONNECT_DATA=(SID=ORCL)))';
+$db['default']['hostname'] = '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SID=ORCL)))';
 $db['default']['username'] = 'moni_plg';
 $db['default']['password'] = 'plnmalang';
 $db['default']['database'] = '';

@@ -313,15 +313,6 @@
 			return $hasil;
 		}
 
-		function get_total_data_by_rayon_TR($nama_rayon){
-			$hasil=$this->db->query("SELECT COUNT(*) AS total FROM V_PELTR where NAMA_RYN = '" .$nama_rayon ."' AND (STATUS_PERMOHONAN <> 'RESTITUSI' OR STATUS_PERMOHONAN IS NULL) AND TGL_BAYAR IS NOT NULL");
-			return $hasil;
-		}
-
-		function get_detail_data_by_rayon_TR($nama_rayon){
-			$hasil=$this->db->query("SELECT * FROM V_PELTR where NAMA_RYN = '" .$nama_rayon ."' AND (STATUS_PERMOHONAN <> 'RESTITUSI' OR STATUS_PERMOHONAN IS NULL) AND TGL_BAYAR IS NOT NULL");
-			return $hasil;
-		}
 
 		function get_total_data_GMBR_TR(){
 			$hasil=$this->db->query("SELECT COUNT(*) AS total_survey FROM v_peltr WHERE (gmbr is null) and (status_permohonan != 'RESTITUSI' or status_permohonan is null)");
@@ -382,9 +373,5 @@
 			return $hasil;
 		}
 
-		public function getRayon($rayon){
-			$hasil = $this->db->query("SELECT * FROM V_PELTR WHERE ID_RYN = '".$rayon."'");
-			return $hasil;
-		}
 	}
 ?>

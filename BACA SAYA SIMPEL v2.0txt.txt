@@ -1,0 +1,78 @@
+FITUR STATUS PELANGGAN
+- tampilan sidebar div notifikasi
+- template bagian js
+	method :
+	- showNotif()
+	- load_notif_more()
+
+- class c_notifikasi
+	method :
+	- show_notif()
+	- load_notif_more()
+
+- class m_notifikasi
+	method :
+	- get_notif()
+	- get_more_notif()
+	- insert_notif()
+
+- class c_email
+	method :
+	- send_email_override() , insert_notif()
+
+- class pelangganTR
+	method :
+	- saveaddlokasi(), insert_notif()
+	- load model m_notifikasi
+
+- class pelangganTM
+	method :
+	- saveaddlokasi(), insert_notif()
+	- load model m_notifikasi
+
+- class kolektif
+	method :
+	- saveaddlokasi(), insert_notif()
+	- load model m_notifikasi
+
+
+Fitur Chat :
+- tampilan diside bar
+- class c_chat
+	method :
+	- tampil_pesan()
+	- load_more()
+	- insert_pesan()
+
+- model m_chat
+	method :
+	- getPesan()
+	- get_more_message()
+	- insertPesan()
+
+- js di template
+	method :
+	- tampilPesan()
+	- load_more()
+	- insertData()
+
+Approve Data User
+- penambahan tabel user belum aktif di views user index.php
+- class c_admin
+	method :
+	- user_approve()
+	- user_unapprove()
+	- cek_email_approve()
+	- user_approve()
+	- user_unapprove()
+	- count_user_not_approval()
+- class m_user
+	method
+	- userfromdb_unapprove()
+	- approve()
+	- unapprove()
+	- cek_approval()
+	- count_non_approval_user()
+- template 
+	JS
+	- count_user_not_approve()

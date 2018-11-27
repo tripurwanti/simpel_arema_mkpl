@@ -13,6 +13,9 @@ header("Content-Transfer-Encoding: binary ");
 ?>
 <table>
 	<tr>
+		<td align="center"></td>
+	</tr>
+	<tr>
 		<td align="center"><img src="<?php echo base_url()?>assets/img/nyoh.jpg"></td>
 	</tr>
 	<tr>
@@ -22,7 +25,16 @@ header("Content-Transfer-Encoding: binary ");
 		<td align="center"></td>
 	</tr>
 	<tr>
+		<td align="center"></td>
+	</tr>
+	<tr>
 		<td><font color='red' size="4"><b>MONITORING PELANGGAN TR</b></font></td>
+	</tr>
+	<tr>
+		<td align="center"></td>
+	</tr>
+	<tr>
+		<td align="center"></td>
 	</tr>
 	<tr>
 		<td>
@@ -97,7 +109,7 @@ header("Content-Transfer-Encoding: binary ");
 				<tbody>
 					<?php
 					$i=1;
-					$c=8;
+					$c=12;
 					foreach($hasil as $listhasil):
 						echo "<tr>";
 						echo "<td class='text-center'>".$i."</td>";
@@ -135,7 +147,11 @@ header("Content-Transfer-Encoding: binary ");
 						echo "<td>".$listhasil->ID_RYN."</td>";
 						echo "<td>".$listhasil->KET_PERLUASAN."</td>";
 						echo "<td>".$listhasil->TGL_RYNKIRIM."</td>";
-						echo '<td>=IF(AND(K'.$c.'<>"";Q'.$c.'<>"");""&ABS(DAYS360(K'.$c.';Q'.$c.'))&" hari";IF(AND(K'.$c.'<>" ";Q'.$c.'<>"");"BLM ADA TGL BAYAR";IF(AND(K'.$c.'<>"";Q'.$c.'<>" ");""&ABS(DAYS360(K'.$c.';TODAY()))&" hari";" ")))</td>';
+
+						echo '<td>=	IF(AND(K'.$c.'<>"";Q'.$c.'<>"");""&ABS(DAYS360(K'.$c.';Q'.$c.'))&" hari";
+									IF(AND(K'.$c.'<>" ";Q'.$c.'<>"");"BLM ADA TGL BAYAR";
+									IF(AND(K'.$c.'<>"";Q'.$c.'<>" ");"BLM ADA TGL RAYON KIRIM GAMBAR";" BLM ADA TGL BAYAR DAN TGL RAYON KIRIM GAMBAR")))</td>';
+
 						echo "<td>".$listhasil->A3CS."</td>";
 						echo "<td>".$listhasil->MVTIC."</td>";
 						echo "<td>".$listhasil->PIN_ISO."</td>";
@@ -152,7 +168,12 @@ header("Content-Transfer-Encoding: binary ");
 						echo "<td>".$listhasil->BUNDLED."</td>";
 						echo "<td>".$listhasil->TGL_NODINKEKON."</td>";
 						echo "<td>".$listhasil->TGL_NODINKEPENG."</td>";
-						echo '<td>=IF(AND(K'.$c.'<>"";AG'.$c.'<>"";AH'.$c.'<>" ");""&DAYS360(K'.$c.';AG'.$c.')&" hari";IF(AND(K'.$c.'<>"";AG'.$c.'<>" ";AH'.$c.'<>"");""&DAYS360(K'.$c.';AH'.$c.')&" hari";IF(OR(AND(K'.$c.'<>" ";AG'.$c.'<>"");(AND(K'.$c.'<>" ";AH'.$c.'<>"")));"BLM ADA TGL BAYAR";IF(AND(K'.$c.'<>"";AG'.$c.'<>" ";AH'.$c.'<>" ");""&DAYS360(K'.$c.';TODAY())&" hari";" "))))</td>';
+
+						echo '<td>=	IF(AND(K'.$c.'<>"";AG'.$c.'<>"";AH'.$c.'<>" ");""&DAYS360(K'.$c.';AG'.$c.')&" hari";
+									IF(AND(K'.$c.'<>"";AG'.$c.'<>" ";AH'.$c.'<>"");""&DAYS360(K'.$c.';AH'.$c.')&" hari";
+									IF(OR(AND(K'.$c.'<>" ";AG'.$c.'<>"");(AND(K'.$c.'<>" ";AH'.$c.'<>"")));"BLM ADA TGL BAYAR";
+									IF(AND(K'.$c.'<>"";AG'.$c.'<>" ";AH'.$c.'<>" ");"BLM ADA TGL KIRIM NODIN";"BLM ADA TGL BAYAR DAN TGL KIRIM NODIN "))))</td>';
+						
 						echo "<td>".$listhasil->KET_ANGKA."</td>";
 						echo "<td>".$listhasil->KET_URAIAN."</td>";
 						echo "<td>".$listhasil->NO_NOTADINAS."</td>";
@@ -174,7 +195,11 @@ header("Content-Transfer-Encoding: binary ");
 						echo "<td>".$listhasil->KON_BUNDLED."</td>";
 						echo "<td>".$listhasil->TGL_NYALA."</td>";
 						echo "<td>".$listhasil->TGL_PDL."</td>";
-						echo '<td>=IF(AND(K'.$c.'<>"";BD'.$c.'<>"");""&DAYS360(K'.$c.';BD'.$c.')&" hari";IF(AND(K'.$c.'<>" ";BD'.$c.'<>"");"BLM ADA TGL BAYAR";IF(AND(K'.$c.'<>"";BD'.$c.'<>" ");""&DAYS360(K'.$c.';TODAY())&" hari";" ")))</td>';
+
+						echo '<td>=	IF(AND(K'.$c.'<>"";BD'.$c.'<>"");""&DAYS360(K'.$c.';BD'.$c.')&" hari";
+									IF(AND(K'.$c.'<>" ";BD'.$c.'<>"");"BLM ADA TGL BAYAR";
+									IF(AND(K'.$c.'<>"";BD'.$c.'<>" ");"BLM ADA TGL PDL";"BLM ADA TGL BAYAR DAN TGL PDL")))</td>';
+						
 						echo "<td>".$listhasil->KETERANGAN."</td>";
 						echo "</tr>";
 						$i++;

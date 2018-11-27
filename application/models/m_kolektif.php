@@ -307,15 +307,7 @@ class M_kolektif extends CI_Model
 			return $hasil;
 		}
 		
-		function get_total_data_by_rayon_KOLEKTIF($nama_rayon){
-			$hasil=$this->db->query("SELECT COUNT(*) AS total FROM V_PELKOL where NAMA_RYN = '" .$nama_rayon ."' AND (STATUS_PERMOHONAN <> 'RESTITUSI' OR STATUS_PERMOHONAN IS NULL) AND TGL_BAYAR IS NOT NULL");
-			return $hasil;
-		}
-
-		function get_detail_data_by_rayon_KOLEKTIF($nama_rayon){
-			$hasil=$this->db->query("SELECT * FROM V_PELKOL where NAMA_RYN = '" .$nama_rayon ."' AND (STATUS_PERMOHONAN <> 'RESTITUSI' OR STATUS_PERMOHONAN IS NULL) AND TGL_BAYAR IS NOT NULL");
-			return $hasil;
-		}
+	
 
 
 		function get_total_data_GMBR_KOLEKTIF(){
@@ -374,9 +366,5 @@ class M_kolektif extends CI_Model
 			return $hasil;
 		}
 
-		public function getRayon($rayon){
-			$hasil = $this->db->query("SELECT * FROM V_PELKOL WHERE ID_RYN = '".$rayon."'");
-			return $hasil;
-		}
 	}
 	?>

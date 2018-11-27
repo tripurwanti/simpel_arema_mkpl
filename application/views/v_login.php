@@ -59,8 +59,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END SIDEBAR TOGGLER BUTTON -->
 <!-- BEGIN LOGIN -->
 <div class="content">
-	<!-- BEGIN LOGIN FORM -->
-                            
+	<!-- BEGIN LOGIN FORM -->     
         <?php echo form_open('c_login/login','class="login-form"'); ?>
 		<h3 class="form-title">Login</h3>
 		<?php echo $log ?>
@@ -89,7 +88,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			</button>
 		</div>
 			
-		<!--
+		
 		<div class="forget-password">
 			<h4>Lupa password ?</h4>
 			<p>
@@ -99,20 +98,153 @@ License: You must have a valid license purchased only from themeforest(the above
 			</p>
 		</div>
 		
-		<div class="create-account">
+		<div class="create-account" style="border:none">
 			<p>
 				 Tidak memiliki akun ?&nbsp; <a href="javascript:;" id="register-btn">
 				Buat akun </a>
 			</p>
-		</div>-->
+		</div>
 	<?php $_SESSION['log']="";?>	
 	<?php echo form_close(); ?>
 	<!-- END LOGIN FORM -->
+	<!-- BEGIN REGISTRATION FORM -->
+	<?php echo form_open_multipart('c_login/regis_admin','class="register-form"'); ?>
+		<h3>Daftar</h3>
+		<?php echo $log; 
+		 $_SESSION['log']="";?>
+		<p>
+			 Masukkan data pribadi Anda di bawah ini:
+		</p>
+		<div class="form-group">
+			<label class="control-label visible-ie8 visible-ie9">Nama Lengkap</label>
+			<div class="input-icon">
+				<i class="fa fa-font"></i>
+				<input class="form-control placeholder-no-fix" type="text" placeholder="Nama Lengkap" name="fullname"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+			<label class="control-label visible-ie8 visible-ie9">Email</label>
+			<div class="input-icon">
+				<i class="fa fa-envelope"></i>
+				<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email"/>
+			</div>
+		</div>
+		 <div class="form-group" >
+            <label class="control-label visible-ie8 visible-ie9">Foto</label>
+                <div class="input-icon">
+				<i class="fa fa-image"></i>
+                    <input type="file" class="form-control" name="foto" />
+                </div>
+         </div>
+		<div class="form-group">
+			<label class="control-label visible-ie8 visible-ie9">Hak Akses</label>
+			<select name="akses" id="select2_sample4" class="select2 form-control">
+				<option value=""></option>
+				<!-- <option hidden value="admin" hidden>Admin</option> -->
+				<option value="view">View Only</option>
+				<!-- <option value="PP Area" hidden>PP Area</option> -->
+				<option value="Perencanaan">Bag. Perencanaan</option>
+				<option value="Konstruksi">Bag. Konstruksi</option>
+				<option value="RYN LAWANG">Ry. Lawang</option>
+				<option value="RYN BULULAWANG">Ry. Bululawang</option>
+				<option value="RYN BATU">Ry. Batu</option>
+				<option value="RYN SINGOSARI">Ry. Singosari</option>
+				<option value="RYN KEPANJEN">Ry. Kepanjen</option>
+				<option value="RYN TUMPANG">Ry. Tumpang</option>
+				<option value="RYN GONDANGLEGI">Ry. Gondanglegi</option>
+				<option value="RYN DAMPIT">Ry. Dampit</option>
+				<option value="RYN NGANTANG">Ry. Ngantang</option>
+				<option value="RYN SUMBER PUCUNG">Ry. Sumber Pucung</option>
+				<option value="RYN DINOYO">Ry. Dinoyo</option>
+				<option value="RYN BLIMBING">Ry. Blimbing</option>
+				<option value="RYN MALANG KOTA">Ry. Malang Kota</option>
+				<option value="RYN KEBON AGUNG">Ry. Kebon Agung</option>
+			</select>
+		</div>
+		<p>
+			 Masukkan rincian akun Anda di bawah ini:
+		</p>
+		<div class="form-group">
+			<label class="control-label visible-ie8 visible-ie9">Username</label>
+			<div class="input-icon">
+				<i class="fa fa-user"></i>
+				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label visible-ie8 visible-ie9">Password</label>
+			<div class="input-icon">
+				<i class="fa fa-lock"></i>
+				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Password" name="password"/>
+			</div>
+			<font color="red"><?php echo form_error('password'); ?></font>
+			<tr>
+			<td colspan="4"><font color="red">* Password harus lebih dari 4 karakter.</font></td>
+			</tr>
+		</div>
+		<div class="form-group">
+			<label class="control-label visible-ie8 visible-ie9">Ulang Password</label>
+			<div class="controls">
+				<div class="input-icon">
+					<i class="fa fa-check"></i>
+					<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Ulang Password" name="rpassword"/>
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Captcha</label>
+			<div class="controls">
+					<table>
+					<tr>
+					<td><?php echo $captcha; ?></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="input-icon"><i class="fa fa-qrcode"></i><input type="text"  class="form-control placeholder-no-fix" autocomplete="off" name="captcha" placeholder="Masukan Validasi"></td>
+					</tr>
+					</table>
+			</div>
+            <font color="#ef4423"><?php echo form_error('captcha');?></font>
+        </div>
+		<div class="form-actions">
+		<a href="">
+			<button id="register-back-btn" type="button" class="btn">
+			<i class="m-icon-swapleft"></i> Kembali </button></a>
+			<button type="submit" id="register-submit-btn" class="btn green-haze pull-right">
+			Sign Up <i class="m-icon-swapright m-icon-white"></i>
+			</button>
+		</div>
+	<?php echo form_close(); ?>
+	<!-- END REGISTRATION FORM -->
+	<!-- BEGIN LUPA PASSWORD FORM -->         
+		<?php echo form_open('c_login/send_notif_email','class="forget-form"'); ?>
+		<h3 class="form-title">Masukkan alamat email anda untuk reset password</h3>
+		<?php echo $log ?>
+		<div class="form-group">
+			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+			<label class="control-label visible-ie8 visible-ie9">Masukkan alamat email anda</label>
+			<div class="input-icon">
+				<i class="fa fa-user"></i>
+				<input class="form-control placeholder-no-fix" type="email" autocomplete="off" placeholder="Email" name="email" required />
+			</div>
+		</div>
+		<font color="#ef4423"><?php echo form_error('email'); ?></font>
+		<div class="form-actions">
+		<a href="">
+			<button id="back-btn" type="button" class="btn">
+			<i class="m-icon-swapleft"></i> Kembali </button></a>
+			<button type="submit" id="register-submit-btn" class="btn green-haze pull-right">
+			Kirim <i class="m-icon-swapright m-icon-white"></i>
+			</button>
+		</div>
+		<?php $_SESSION['log']="";?>	
+		<?php echo form_close(); ?>
+		<!-- END LUPA PASSWORD FORM -->
 </div>
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright">
-	 2015 &copy; Fitrah N | Fajar DR. JP VEDC.
+	 2015 &copy; PLN Arema-REN
 </div>
 <!-- END COPYRIGHT -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->

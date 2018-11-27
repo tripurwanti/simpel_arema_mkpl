@@ -11,7 +11,7 @@
 					<ul class="page-breadcrumb breadcrumb">
 						<li>
 							<i class="fa fa-filter"></i>
-							<a href="<?php base_url()?>filter">
+							<a href="<?php base_url()?>c_filter">
 								filter
 							</a>
 						</li>
@@ -38,7 +38,7 @@
 				</div>
 				<div class="portlet-body form">
 					<!-- BEGIN FORM-->
-					<?php echo form_open_multipart('filter/datafilter','class="form-horizontal"');?>
+					<?php echo form_open_multipart('c_filter/datafilter','class="form-horizontal"');?>
 							<div class="form-body">
 							<br>
 								<div class="form-group">
@@ -140,7 +140,7 @@
 									</div>
 									<div class="col-md-6">
 										<div class="btn-group pull-right">
-												<?php echo form_open_multipart('filter/exporttoexcel');?>
+												<?php echo form_open_multipart('c_filter/exporttoexcel');?>
 													<input type="hidden" name="jenis_monitoring" value="<?php echo $jenis ?>">
 													<input type="hidden" name="rayon" value="<?php echo $rayon ?>">
 													<input type="hidden" name="status" value="<?php echo $status ?>">

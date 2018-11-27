@@ -18,7 +18,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8"/>
-<title>Simpel Arema) | Sigup Form</title>
+<title>Simpel Arema | Login Form</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -49,7 +49,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN LOGO -->
 <div class="logo">
 	<a href="<?php echo base_url()?>">
-	<img src="<?php echo base_url()?>assets/img/logo-login.PNG" alt="" height="60" width="400"/>
+	<img src="<?php echo base_url()?>assets/img/logo-login.PNG" alt="" height="100" width="600"/>
 	</a>
 </div>
 <!-- END LOGO -->
@@ -60,7 +60,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN LOGIN -->
 <div class="content">
 	<!-- BEGIN REGISTRATION FORM -->
-	<?php echo form_open_multipart('daftar/sigup'); ?>
+	<?php echo form_open_multipart('c_admin/regis_admin','class="register-form" style="display:inline"'); ?>
 		<h3>Daftar</h3>
 		<?php echo $log; 
 		 $_SESSION['log']="";?>
@@ -93,9 +93,9 @@ License: You must have a valid license purchased only from themeforest(the above
 			<label class="control-label visible-ie8 visible-ie9">Hak Akses</label>
 			<select name="akses" id="select2_sample4" class="select2 form-control">
 				<option value=""></option>
-				<option value="admin">Admin</option>
+				<!-- <option hidden value="admin" hidden>Admin</option> -->
 				<option value="view">View Only</option>
-				<option value="PP Area">PP Area</option>
+				<!-- <option value="PP Area" hidden>PP Area</option> -->
 				<option value="Perencanaan">Bag. Perencanaan</option>
 				<option value="Konstruksi">Bag. Konstruksi</option>
 				<option value="RYN LAWANG">Ry. Lawang</option>
@@ -158,10 +158,8 @@ License: You must have a valid license purchased only from themeforest(the above
 			</div>
             <font color="#ef4423"><?php echo form_error('captcha');?></font>
         </div>
-		
-
 		<div class="form-actions">
-		<a href="<?php echo base_url()?>user">
+		<a href="<?php echo base_url()?>c_admin/show_all_admin">
 			<button id="register-back-btn" type="button" class="btn">
 			<i class="m-icon-swapleft"></i> Kembali </button></a>
 			<button type="submit" id="register-submit-btn" class="btn green-haze pull-right">
@@ -174,7 +172,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright">
-	 2015 &copy; Fitrah N | Fajar DR. JP VEDC.
+	 2015 &copy; PLN Arema-REN
 </div>
 <!-- END COPYRIGHT -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->

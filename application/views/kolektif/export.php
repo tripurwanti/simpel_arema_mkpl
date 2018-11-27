@@ -13,6 +13,9 @@ header("Content-Transfer-Encoding: binary ");
 ?>
 <table>
 	<tr>
+		<td align="center"></td>
+	</tr>
+	<tr>
 		<td align="center"><img src="<?php echo base_url()?>assets/img/nyoh.jpg"></td>
 	</tr>
 	<tr>
@@ -23,6 +26,12 @@ header("Content-Transfer-Encoding: binary ");
 	</tr>
 	<tr>
 		<td><font color='red' size="4"><b>MONITORING PELANGGAN KOLEKTIF</b></font></td>
+	</tr>
+	<tr>
+		<td align="center"></td>
+	</tr>
+	<tr>
+		<td align="center"></td>
 	</tr>
 	<tr>
 		<td>
@@ -96,6 +105,7 @@ header("Content-Transfer-Encoding: binary ");
 				<tbody>
 					<?php
 					$i=1;
+					$c=11;
 					foreach($hasil as $listhasil):
 						echo "<tr>";
 						echo "<td class='text-center'>".$i."</td>";
@@ -124,7 +134,10 @@ header("Content-Transfer-Encoding: binary ");
 
 						echo "<td>".$listhasil->KET_PERLUASAN."</td>";
 						echo "<td>".$listhasil->TGL_RYNKIRIM."</td>";
-						echo "<td>".$listhasil->JANGKA_SURVEYPP."</td>";
+
+						echo '<td>=	IF(AND(H'.$c.'<>"";N'.$c.'<>"");""&ABS(DAYS360(H'.$c.';N'.$c.'))&" hari";
+									IF(AND(H'.$c.'<>" ";N'.$c.'<>"");"BELUM ADA TGL BAYAR";
+									IF(AND(H'.$c.'<>"";N'.$c.'<>" ");"BELUM ADA TGL RAYON KIRIM PERMOHONAN";"BELUM ADA TGL BAYAR DAN TGL RAYON KIRIM PERMOHONAN")))</td>';
 						
 						echo "<td>".$listhasil->A3CS_150."</td>";
 						echo "<td>".$listhasil->A3CS240."</td>";
@@ -144,7 +157,12 @@ header("Content-Transfer-Encoding: binary ");
 						echo "<td>".$listhasil->STATUS_KELAYAKAN."</td>";
 						echo "<td>".$listhasil->TGL_NODINKEKON."</td>";
 						echo "<td>".$listhasil->TGL_NODINKEPENG."</td>";
-						echo "<td>".$listhasil->JANGKABAYAR_NODIN."</td>";
+
+						echo '<td>=	IF(AND(H'.$c.'<>"";AF'.$c.'<>"";AG'.$c.'<>" ");""&DAYS360(H'.$c.';AF'.$c.')&" hari";
+									IF(AND(H'.$c.'<>"";AF'.$c.'<>" ";AG'.$c.'<>"");""&DAYS360(H'.$c.';AG'.$c.')&" hari";
+									IF(OR(AND(H'.$c.'<>" ";AF'.$c.'<>"");(AND(H'.$c.'<>" ";AG'.$c.'<>"")));"BLM ADA TGL BAYAR";
+									IF(AND(H'.$c.'<>"";AF'.$c.'<>" ";AG'.$c.'<>" ");"BELUM ADA TGL KIRIM NODIN";"BELUM ADA TGL BAYAR DAN TGL KIRIM NODIN"))))</td>';
+						
 						echo "<td>".$listhasil->KET_ANGKA."</td>";
 						echo "<td>".$listhasil->KET_URAIAN."</td>";
 						echo "<td>".$listhasil->NO_NOTADINAS."</td>";
@@ -166,10 +184,16 @@ header("Content-Transfer-Encoding: binary ");
 						echo "<td>".$listhasil->KON_BUNDLED."</td>";
 						echo "<td>".$listhasil->TGL_NYALA."</td>";
 						echo "<td>".$listhasil->TGL_PDL."</td>";
-						echo "<td>".$listhasil->HPL."</td>";
+
+						echo '<td>= IF(AND(H'.$c.'<>"";BB'.$c.'<>"");""&DAYS360(H'.$c.';BB'.$c.')&" hari";
+									IF(AND(H'.$c.'="";BB'.$c.'<>"");"BELUM ADA TGL BAYAR";
+									IF(AND(H'.$c.'<>"";BB'.$c.'="");"TGL PDL BELUM ADA";"BELUM ADA TANGGAL BAYAR DAN TGL PDL")))</td>';
+
+						// echo "<td>".$listhasil->HPL."</td>";
 						echo "<td>".$listhasil->KETERANGAN."</td>";
 						echo "</tr>";
 						$i++;
+						$c++;
 					endforeach;
 					?>
 				</tbody>

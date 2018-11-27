@@ -14,15 +14,15 @@
 | path to your installation.
 |
 */
-//$config['base_url']	= "http://localhost/simpel_arema/";
+$config['base_url']	= "http://localhost/simpel_arema/";
 //$config['base_url']	= "http://192.168.1.1/simpel_arema/";
 //$config['base_url']	= "http://192.168.137.1/simpel_arema/";
-//$config['base_url']	= "http://10.5.71.30/simpel_arema/";
+// $config['base_url']	= "http://10.5.71.30/simpel_arema/";
 
 //$root = "http://".$_SERVER['HTTP_HOST'];
 //$root .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 //$config['base_url']    = "$root";
-$config['base_url']		= "http://localhost/simpel_arema_test/";
+//$config['base_url']		= "http://localhost/simpel_arema/";
 /*
 |--------------------------------------------------------------------------
 | Index File
